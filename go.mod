@@ -11,7 +11,6 @@ require (
 	github.com/go-openapi/strfmt v0.23.0
 	github.com/go-openapi/swag v0.23.1
 	github.com/go-openapi/validate v0.24.0
-	github.com/resend/resend-go/v3 v3.0.0
 )
 
 require (
