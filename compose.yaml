@@ -1,0 +1,28 @@
+services:
+  rqlite:
+    image: rqlite/rqlite
+    container_name: rqlite
+    restart: always
+  mailpit-http:
+    image: axllent/mailpit
+    container_name: mailpit-http
+    restart: always
+    environment:
+      MP_MAX_INBOX_SIZE: 10000
+      MP_DATABASE: http://rqlite:4001
+    ports:
+      - "8025:8025"
+    depends_on:
+      - rqlite
+  mailpit-smtp:
+    image: axllent/mailpit
+    container_name: mailpit-smtp
+    restart: always
+    environment:
+      MP_MAX_INBOX_SIZE: 10000
+      MP_DATABASE: http://rqlite:4001
+    ports:
+      - "25:1025"
+      - "1025:1025"
+    depends_on:
+      - rqlite
